@@ -29,6 +29,12 @@ class UserController {
       res.json(['123', '23232', 'some test']);
     } catch (e) {}
   }
+
+  async default(req: any, res: any, next: any) {
+    try {
+      res.send('API home page');
+    } catch (e) {}
+  }
 }
 
 export default new UserController();

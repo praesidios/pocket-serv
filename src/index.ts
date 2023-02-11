@@ -6,24 +6,25 @@ import cors from 'cors';
 import router from './router';
 
 mongoose.set('strictQuery', true);
-dotenv.config();
 
 const app = express();
+dotenv.config();
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-app.use('./api', router);
+app.use('/api', router);
 
 const start = async () => {
   try {
     await mongoose.connect(
       process.env.DB_URL as string,
-      {
+      ({
         useNewUrlParser: true,
         useUnifiedTopology: true,
-      } as any,
+      } as unknown) as never,
     );
 
     app.listen(PORT, () => console.log(`Server started on ${PORT}`));
